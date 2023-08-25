@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  web:
+    image: ghcr.io/holo-otaku/dst-frontend:release
+    ports:
+      - 80:80
+
+  backend:
+    image: dst-backend
+    networks:
+      - dst_network
+    ports:
+      - 5000:5000
+
+  database:
+    image: mysql:8.0.33
+    networks:
+      - dst_network
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ=Asia/Taipei
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+
+networks:
+  dst_network:
