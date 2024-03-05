@@ -1,31 +1,45 @@
-# DST Project
+# DST 安裝步驟
 
-使用這個專案，你將可以在你的電腦上建立一個網站，並且可以在網站上進行簡單的資料庫操作。
+## 前置作業
 
-## 環境需求
+1. Ubuntu OS
+2. 安裝 Docker，可參考官網安裝步驟 [Docker](https://docs.docker.com/engine/install/ubuntu/)
 
-- Docker
-- Docker Compose
+   _備註：安裝後記得將使用者加入 docker 群組，以避免每次執行 docker 指令都需要 sudo_ [參考](https://docs.docker.com/engine/install/linux-postinstall/)
 
-## 安裝&啟動
+3. Git 指令，通常會內建在 Ubuntu OS 中，若沒有安裝可執行以下指令安裝
 
-1. 將這個專案 clone 到你的電腦上
-2. 在專案目錄下執行 `docker-compose up -d`
-3. 在瀏覽器中打開 `http://localhost`
+   ```bash
+   sudo apt-get update
+   sudo apt-get install git
+   ```
 
-## 使用
+4. Github Token
 
-初次使用將會看到設定 IP 的畫面，請輸入: `localhost:5000`
-並且按下 `Link Start` 按鈕。
+   由於本專案 docker images 接存放在 Github Packages，因此需要一組 Github Token 來取得 images，請參考 [官方文件](https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages#authenticating-to-github-packages) 產生 Token
 
-接著你將會看到一個登入畫面，請輸入預設的帳號密碼: `admin` `admin`
+## 安裝步驟
 
-Enjoy it!
+1. Clone DST 專案
 
-## Containers
+   ```bash
+   git clone https://github.com/holo-otaku/dst.git
+   ```
 
-| Container Name | Image        | Port | Description |
-| -------------- | ------------ | ---- | ----------- |
-| web            | dst-frontend | 80   | 網站        |
-| database       | mysql        | 3306 | 資料庫      |
-| backend        | dst-backend  | 5000 | 後端伺服器  |
+2. 進入專案目錄
+
+   ```bash
+   cd dst
+   ```
+
+3. 環境初始化
+
+   ```bash
+   bash init.sh
+   ```
+
+4. 啟動專案
+
+   ```bash
+   docker-compose up -d
+   ```
