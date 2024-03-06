@@ -41,5 +41,5 @@
 4. 啟動專案
 
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
